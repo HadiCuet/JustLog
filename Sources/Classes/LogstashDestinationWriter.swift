@@ -34,7 +34,8 @@ class LogstashDestinationWriter {
             
             if shouldLogActivity {
                 status.forEach {
-                    Self.printActivity("🔌 <LogstashDestination>, \($0.key) did error: \($0.value.localizedDescription)", shouldLogActivity: shouldLogActivity)
+                    Self.printActivity("🔌 <LogstashDestination>, \($0.key) did error: \($0.value.localizedDescription)",
+                                       shouldLogActivity: shouldLogActivity)
                 }
             }
             

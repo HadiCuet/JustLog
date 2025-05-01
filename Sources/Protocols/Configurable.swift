@@ -11,7 +11,8 @@ public protocol Configurable {
     // file
     var logFilename: String? { get set }
     var baseUrlForFileLogging: URL? { get set }
-    
+    var logFileAmount: Int { get set }
+
     // logstash
     var allowUntrustedServer: Bool { get set }
     var logstashHost: String { get set }

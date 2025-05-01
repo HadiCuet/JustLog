@@ -23,7 +23,7 @@ let package = Package(
     dependencies: [
         .package(
             url: "https://github.com/SwiftyBeaver/SwiftyBeaver",
-            exact: "1.9.6"
+            exact: "2.1.1"
         ),
     ],
     targets: [

@@ -10,7 +10,8 @@ public struct Configuration: Configurable {
     // file
     public var logFilename: String?
     public var baseUrlForFileLogging: URL?
-    
+    public var logFileAmount: Int
+
     // logstash
     public var allowUntrustedServer: Bool
     public var logstashHost: String
@@ -30,6 +31,7 @@ public struct Configuration: Configurable {
                 sendingInterval: TimeInterval = 5,
                 logFilename: String? = nil,
                 baseUrlForFileLogging: URL? = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first,
+                logFileAmount: Int = 1,
                 allowUntrustedServer: Bool = false,
                 logstashHost: String = "",
                 logstashPort: UInt16 = 9300,
@@ -46,7 +48,8 @@ public struct Configuration: Configurable {
         
         self.logFilename = logFilename
         self.baseUrlForFileLogging = baseUrlForFileLogging
-        
+        self.logFileAmount = logFileAmount
+
         // logstash
         self.allowUntrustedServer = allowUntrustedServer
         self.logstashHost = logstashHost

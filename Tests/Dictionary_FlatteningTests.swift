@@ -30,7 +30,7 @@ class Dictionary_Flattening: XCTestCase {
     
     func test_flattened() {
         
-        let domain = "com.justeat.dictionary"
+        let domain = "com.hadicuet.dictionary"
         let error = NSError(domain: domain, code: 200, userInfo: ["k8": "v8"])
         let nestedError = NSError(domain: domain, code: 200, userInfo: [NSUnderlyingErrorKey: NSError(domain: domain, code: 200, userInfo: ["k10": 10])])
         let input = ["k1": "v1", "k2": ["k3": "v3"], "k4": 4, "k5": 5.1, "k6": true,
