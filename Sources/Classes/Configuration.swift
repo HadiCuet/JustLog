@@ -36,7 +36,7 @@ public struct Configuration: Configurable {
                 logstashHost: String = "",
                 logstashPort: UInt16 = 9300,
                 logstashTimeout: TimeInterval = 20,
-                logLogstashSocketActivity: Bool = false,
+                logLogstashSocketActivity: Bool = true,
                 logzioToken: String? = nil,
                 logstashOverHTTP: Bool = false,
                 isConsoleLoggingEnabled: Bool = true,
