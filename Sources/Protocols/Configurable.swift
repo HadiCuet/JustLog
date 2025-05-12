@@ -3,15 +3,17 @@
 import Foundation
 
 public protocol Configurable {
-    
+
     // please see https://docs.swiftybeaver.com/article/20-custom-format for variable log format options
     var logFormat: String { get set }
     var sendingInterval: TimeInterval { get set }
-    
+
     // file
-    var logFilename: String? { get set }
+    var logFolderName: String { get set }
+    var logFilename: String { get set }
     var baseUrlForFileLogging: URL? { get set }
     var logFileAmount: Int { get set }
+    var fileLogFormat: String { get set }
 
     // logstash
     var allowUntrustedServer: Bool { get set }
@@ -21,7 +23,7 @@ public protocol Configurable {
     var logLogstashSocketActivity: Bool { get set }
     var logzioToken: String? { get set }
     var logstashOverHTTP: Bool { get set }
-    
+
     // destinations
     var isConsoleLoggingEnabled: Bool { get set }
     var isFileLoggingEnabled: Bool { get set }

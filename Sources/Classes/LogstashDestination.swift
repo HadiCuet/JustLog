@@ -82,7 +82,6 @@ public class LogstashDestination: BaseDestination {
 
             let time = mach_absolute_time()
             let logTag = Int(truncatingIfNeeded: time)
-            printActivity("🔌 <LogstashDestination>, \(logTag) append")
             logstashFileDestination.appendLog(tag: logTag, content: dict)
         }
     }
@@ -100,7 +99,6 @@ public class LogstashDestination: BaseDestination {
                 }
 
                 if let unsent = missing {
-                    //                    self.logsToShip.merge(unsent) { lhs, _ in lhs }
                     self.logstashFileDestination.appendLogsFromDictionary(unsent)
                     self.printActivity("🔌 <LogstashDestination>, \(unsent.count) failed tasks")
                 }

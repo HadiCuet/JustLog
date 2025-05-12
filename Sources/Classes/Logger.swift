@@ -98,11 +98,11 @@ public final class Logger {
     private func setupFileDestination(with configuration: Configurable) {
         if isFileLoggingEnabled {
             file = JustFileDestination()
-            file.format = configuration.logFormat
+            file.format = configuration.fileLogFormat
             file.logFileAmount = configuration.logFileAmount
             if let baseUrl = configuration.baseUrlForFileLogging {
-                let pathComponent = configuration.logFilename ?? "justfile.log"
-                file.logFileURL = baseUrl.appendingPathComponent(pathComponent, isDirectory: false)
+                let folderURL = baseUrl.appendingPathComponent(configuration.logFolderName, isDirectory: true)
+                file.logFileURL = folderURL.appendingPathComponent(configuration.logFilename, isDirectory: false)
             }
             internalLogger.addDestination(file)
         }

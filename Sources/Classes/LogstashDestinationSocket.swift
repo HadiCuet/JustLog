@@ -106,9 +106,8 @@ private class LogstashDestinationURLSessionDelegate: NSObject, URLSessionDelegat
         if logActivity {
             print("🔌 <LogstashDestination>, did receive \(challenge.protectionSpace.authenticationMethod) challenge")
         }
-        if
-            challenge.protectionSpace.host == self.host,
-            let trust = challenge.protectionSpace.serverTrust {
+        if challenge.protectionSpace.host == self.host,
+           let trust = challenge.protectionSpace.serverTrust {
             let credential = URLCredential(trust: trust)
             completionHandler(.useCredential, credential)
         } else {
