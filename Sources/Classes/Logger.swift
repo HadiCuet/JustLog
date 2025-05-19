@@ -103,9 +103,20 @@ public final class Logger {
             if let baseUrl = configuration.baseUrlForFileLogging {
                 let folderURL = baseUrl.appendingPathComponent(configuration.logFolderName, isDirectory: true)
                 file.logFileURL = folderURL.appendingPathComponent(configuration.logFilename, isDirectory: false)
+
+                if configuration.isFileExcludeFromBackup {
+                    excludeLogsFromBackup(logFolderURL: folderURL)
+                }
             }
             internalLogger.addDestination(file)
         }
+    }
+
+    private func excludeLogsFromBackup(logFolderURL: URL) {
+        var logUrl = logFolderURL
+        var resourceValues = URLResourceValues()
+        resourceValues.isExcludedFromBackup = true
+        try? logUrl.setResourceValues(resourceValues)
     }
 
     private func setupLogstashDestination(with configuration: Configurable) {
@@ -219,6 +230,12 @@ extension Logger: Logging {
             internalLogger.info(logMessage, file: file, function: function, line: Int(line))
         case .verbose:
             internalLogger.verbose(logMessage, file: file, function: function, line: Int(line))
+        case .sensitive:
+            // .sensitive log type is mapped to .critical to prevent writing to file
+            internalLogger.critical(logMessage, file: file, function: function, line: Int(line))
+        case .sanitized:
+            // .sanitized log type is mapped to .fault to prevent sending to server
+            internalLogger.fault(logMessage, file: file, function: function, line: Int(line))
         }
     }
 }

@@ -12,6 +12,7 @@ public protocol Configurable {
     var logFolderName: String { get set }
     var logFilename: String { get set }
     var baseUrlForFileLogging: URL? { get set }
+    var isFileExcludeFromBackup: Bool { get set }
     var logFileAmount: Int { get set }
     var fileLogFormat: String { get set }
 

@@ -65,7 +65,10 @@ public class LogstashDestination: BaseDestination {
                               function: String,
                               line: Int,
                               context: Any? = nil) -> String? {
-
+        guard level != .fault else {
+            // Skip sending fault logs (sanitized logs) to the server.
+            return nil
+        }
         if let dict = msg.toDictionary() {
             var flattened = dict.flattened()
             if let logzioToken = logzioToken {

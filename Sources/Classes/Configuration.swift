@@ -11,6 +11,7 @@ public struct Configuration: Configurable {
     public var logFolderName: String
     public var logFilename: String
     public var baseUrlForFileLogging: URL?
+    public var isFileExcludeFromBackup: Bool
     public var logFileAmount: Int
     public var fileLogFormat: String
 
@@ -33,7 +34,8 @@ public struct Configuration: Configurable {
                 sendingInterval: TimeInterval = 5,
                 logFolderName: String = "log-folder",
                 logFilename: String = "just-app.log",
-                baseUrlForFileLogging: URL? = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first,
+                baseUrlForFileLogging: URL? = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first,
+                isFileExcludeFromBackup: Bool = true,
                 logFileAmount: Int = 1,
                 fileLogFormat: String = "$Dyyyy-MM-dd HH:mm:ss.SSS$d $N.$F:$l $C$L$c: $M",
                 allowUntrustedServer: Bool = false,
@@ -57,6 +59,7 @@ public struct Configuration: Configurable {
             self.logFilename = logFilename + ".log"
         }
         self.baseUrlForFileLogging = baseUrlForFileLogging
+        self.isFileExcludeFromBackup = isFileExcludeFromBackup
         self.logFileAmount = logFileAmount
         self.fileLogFormat = fileLogFormat
 
